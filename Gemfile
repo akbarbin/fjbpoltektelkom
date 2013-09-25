@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'ruby', '1.8.7'
 gem 'rails', '2.3.8'
 #gem 'mysql', '2.9.1'
 gem 'rdoc', '4.0.1'
