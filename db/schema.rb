@@ -76,10 +76,10 @@ ActiveRecord::Schema.define(:version => 20111001145217) do
   end
 
   create_table "users", :force => true do |t|
-    t.integer  "nim"
+    t.string   "nim"
     t.string   "name"
     t.integer  "prodi"
-    t.integer  "handphone"
+    t.string   "handphone"
     t.integer  "year"
     t.string   "status"
     t.string   "current_address"

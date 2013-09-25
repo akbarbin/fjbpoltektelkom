@@ -14,35 +14,55 @@
 #
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+login: &login
+ adapter: postgresql
+ username: postgres
+ password: postgres
+ host: localhost
+ port: 5432
+ min_messages: warning
+
 development:
-  adapter: mysql
-  encoding: utf8
-  reconnect: false
-  database: semangat_development
-  pool: 5
-  username: root
-  password: '12345678'
-  socket: /var/run/mysqld/mysqld.sock
+  database: fjbpoltektelkom_development
+  <<: *login
+
+test:
+  database: fjbpoltektelkom_test
+  <<: *login
+
+production:
+  database: fjbpoltektelkom_production
+  <<: *login
+
+#development:
+#  adapter: mysql
+#  encoding: utf8
+#  reconnect: false
+#  database: semangat_development
+#  pool: 5
+#  username: root
+#  password: '12345678'
+#  socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  adapter: mysql
-  encoding: utf8
-  reconnect: false
-  database: semangat_test
-  pool: 5
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+#test:
+#  adapter: mysql
+#  encoding: utf8
+#  reconnect: false
+#  database: semangat_test
+#  pool: 5
+#  username: root
+#  password:
+#  socket: /var/run/mysqld/mysqld.sock
 
-production:
-  adapter: mysql
-  encoding: utf8
-  reconnect: false
-  database: semangat_production
-  pool: 5
+#production:
+#  adapter: mysql
+#  encoding: utf8
+#  reconnect: false
+#  database: semangat_production
+#  pool: 5
   username: root
   password: 
   socket: /var/run/mysqld/mysqld.sock

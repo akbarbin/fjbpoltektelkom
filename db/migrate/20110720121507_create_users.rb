@@ -1,10 +1,10 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
-      t.integer   :nim
+      t.string   :nim
       t.string    :name
       t.integer   :prodi
-      t.integer   :handphone
+      t.string   :handphone
       t.integer   :year
       t.string    :status
       t.string    :current_address
