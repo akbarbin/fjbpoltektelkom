@@ -1,0 +1,37 @@
+<html>
+<body>
+<div id="main">
+<div class="content">
+    <table class="list">
+          <tbody>
+          <tr>
+            <th>#</th>
+            <th>From</th>
+            <th>Content</th>
+            <th>Action</th>
+          </tr>
+          <% for inbox in @inboxs %>
+          <tr>
+            <td><%= h(inbox.id) %></td>
+            <td><%= link_to h(inbox.user.username), inbox.user -%></td>
+            <td>
+            <div class="actions">
+              <%- if current_user -%>
+                <%- if current_user.id == inbox.user_id -%>
+                  <%= link_to "Edit", edit_inbox_path(inbox) %> |
+                  <%= link_to "Destroy", inbox, :method => :delete, :confirm => "Are you sure?" %>
+                <% end %>  
+             <% end %>   
+            </td>
+            </div>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <div class="actions">
+            <%= link_to "New inbox", new_inboxes_path%>
+        </div>
+  </div>
+</div>
+</body>
+</html>

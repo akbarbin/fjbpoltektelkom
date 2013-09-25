@@ -1,0 +1,61 @@
+<html>
+<body>
+<div id="main">
+<div class="content">
+<div class="side">
+    <div class="episode_views">
+      View:
+      <%= link_to image_tag("full.png", :border=>0), :controller => "home", :action => 'index' %>
+      <%= link_to image_tag("list.png", :border=>0), :controller => "home", :action => 'list' %>
+    </div>
+      <div class="categories">
+        <h2>Categories</h2>
+        <ul>
+          <% for category in @categories %>
+            <li><%= link_to h(category.name), category %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="banner">
+      <a href="#"><img src="/images/linode.png" alt="lenode" /></a>
+     </div>
+  </div>
+  <div class="create_post">
+   <%= link_to image_tag("fix.png", :border=>0), :controller => "posts", :action => 'new' %>
+  </div>
+  <% if current_user %>
+  <div class="search">
+    <% form_for @search do |f| %>
+    <p>
+      <%= f.label :title_like, "Title" %><br />
+      <%= f.text_field :title_like %>
+    </p>
+    <p>
+      <%= f.label :address_like, "Location" %><br />
+      <%= f.text_field :address_like %>
+    </p>
+    <p>
+      <%= f.label :category_id_equals, "Category" %><br />
+      <%= f.collection_select :category_id_equals, Category.all, :id, :name, :include_blank => true %>
+    </p>
+    <p>
+      <%= f.label :price_gte, "Price Range" %><br />
+      <%= f.text_field :price_gte, :size => 8 %> - <%= f.text_field :price_lte, :size => 8 %>
+    </p>
+    <p>
+      <%= f.submit "Search" %>
+    </p>
+  <% end %>
+
+  <p>
+    Sort by:
+    <%= order @search, :by => :title %> |
+    <%= order @search, :by => :created_at %> |
+    <%= order @search, :by => :price %>
+  </p>
+  <% end %>
+  <%= render @posts %>
+  <div class="pagination"><%= will_paginate @posts %></div>
+  </div>
+</body>
+</html>

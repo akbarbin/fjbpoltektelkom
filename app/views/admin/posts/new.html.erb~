@@ -1,0 +1,5 @@
+<% title 'New Post' %>
+
+<%= render :partial => 'form', :locals => { :target => admin_posts_url }%>
+<%= render :partial => 'form', :locals => { :target => admin_posts_url }%>
+

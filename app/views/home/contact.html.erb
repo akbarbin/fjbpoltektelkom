@@ -1,0 +1,52 @@
+<html>
+<body>
+<div id="main">
+      
+<div class="content">
+  <div id="feedback">
+    <h2 class="bar">Feedback</h2>
+    <form> 
+      
+      <div class="info">
+        <p>You can also contact <a href="#">@fjbpolitekniktelkom</a>
+ on Twitter, or send an email to 
+ 
+   <a href="mailto:fjbtelkompolytechnic@gmail.com">fjbpolytechnic@gmail.com</a></p>
+      </div>
+ <% form_for @feedback do |f| %>    
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </div>
+      <div class="field">
+        <%= f.label :content %>
+        <%= f.text_area :content %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Submit" %>
+      </div>
+</form>  <% end %></div>
+  <div id="feedback_instructions">
+    <p><strong>Please send feedback about:</strong></p>
+    <ul>
+      <li>Problems with existing posts</li>
+      <li>Ideas for future posts</li>
+      <li>Anything about this site</li>
+    </ul>
+    <p>If you can join in Forum Jual Beli Telkom Polytechnic</p>
+    <ul>
+      <li>On facebook <a 
+href="#">FJB Telkom Polytechnic</a></li>
+      <li>On twitter <a 
+href="#"> FJB Telkom Polytechnic</a></li>
+    </ul>
+  </div>
+</div>
+    </div>
+   </div>
+</body>
+</html>    

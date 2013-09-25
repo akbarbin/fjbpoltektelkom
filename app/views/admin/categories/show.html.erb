@@ -1,0 +1,29 @@
+<html>
+<body>
+<div id="main">
+<div class="content">
+
+<% for post in @category.posts %>
+  <div class="episodes">
+        <div class="full">
+          <div class="episode">
+  <div class="screenshot">
+  <%= image_tag post.photo.url, :width=>"200", :height=>"200" %></div>
+  <div class="main">
+    <div class="info">
+      
+      <span class="number">Id Post  #<%= post.id %></span> –
+      <span class="published_at"><%= post.created_at.strftime('%b %d, %Y') %></span>    </div>
+    <h2><%= link_to h(post.title), post %></h2>
+    <p><%= simple_format(post.content) %></p>
+    <div class="watch">
+      <%= link_to "Look Post", post_path(post), :class=>"play_video watch_button" %>
+      <span class="stats">(<a 
+href="#"><%= pluralize(post.comments.size, 'comment') %></a>)</span>    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+<% end %>
+</div>
+</body>
+</html>

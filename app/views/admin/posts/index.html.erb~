@@ -1,0 +1,61 @@
+<html>
+<body>
+<div id="main">
+<div class="content">
+<div style="float: right">
+  <%= link_to "Destroy pending" %>
+</div>
+<h1>List Post SoldOut</h1>
+   <table class="list">
+       <tbody>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Seller</th>
+            <th>Action</th>
+          </tr>
+          <% for post in @posts_soldout %>
+          <tr>
+            <td><%= h(post.id) -%></td>
+            <td><%= link_to h (post.title), admin_post_path(post) -%></td>
+            <td><%= link_to h(post.user.username), admin_user_path(post.user) -%></td> 
+            <td>
+            <div class="actions">
+                    <%= link_to "Edit", edit_admin_post_path(post) -%> |
+                    <%= link_to "Destroy", admin_post_path(post), :method => :delete, :confirm => "Are you sure?" -%>
+            </div>
+          </tr>
+          <% end %>
+        </tbody>
+    </table>
+    <h1>List Post Pending</h1>
+   <table class="list">
+       <tbody>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Seller</th>
+            <th>Action</th>
+          </tr>
+          <% for post in @posts_pending %>
+          <tr>
+            <td><%= h(post.id) -%></td>
+            <td><%= link_to h (post.title), admin_post_path(post) -%></td>
+            <td><%= link_to h(post.user.username), admin_user_path(post.user) -%></td> 
+            <td>
+            <div class="actions">
+                    <%= link_to "Edit", edit_admin_post_path(post) -%> |
+                    <%= link_to "Destroy", admin_post_path(post), :method => :delete, :confirm => "Are you sure?" -%>
+            </div>
+          </tr>
+          <% end %>
+        </tbody>
+    </table>
+        <div class="actions">
+            <%= link_to "New Post", new_admin_post_path %>
+        </div>
+  </div>
+  <div class="pagination"><%= will_paginate @posts %></div>
+</div>
+</body>
+</html>

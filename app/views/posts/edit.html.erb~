@@ -1,0 +1,64 @@
+<html>
+<head>
+  <style type="text/css">
+    span.must{
+      font-size:12pt;
+      color:red;
+    }
+  </style>
+</head>
+<body>
+<div id="main">
+    <div class="banner_post">
+    <img src="/images/spos.jpg" alt="sponsor" width=450px; height= 600px; />
+    </div>  
+    <div class="content">
+    <div class="form">
+    <% form_for @post, :html => { :multipart => true } do |f| %>
+      <%= f.error_messages %>
+      <%= f.hidden_field :user_id, :value => current_user.id -%>
+      <p>
+        <%= f.label :category %><br />
+        <%= collection_select (:post, :category_id, Category.all, :id, :name, :prompt => true) %><span class="must"> * </span>
+      </p> 
+       <p>
+        <%= f.label :title %><br />
+        <%= f.text_field :title %><span class="must"> * </span>
+      </p>  
+      <p>
+        <%= f.label :price %><br />
+        <%= f.text_field :price %><span class="must"> * </span>
+      </p>
+      <p>
+        <%= f.label :content %><br />
+        <%= f.text_area :content%><span class="must"> * </span>
+      </p>
+      <p>
+        <%= f.label :Status %><br /> 
+        <%= f.radio_button :status, "Pending" %> Pending <%= f.radio_button :status, "SoldOut" %> Sold Out
+      </p>
+      <p>
+        <%= f.label :photo %><br />
+        <%= f.file_field :photo %><span class="must"> * </span>
+      </p>
+      <p>
+        <%= f.submit 'Submit'%>
+        or <%= link_to "Cancel", posts_path %>
+      </p>
+  <% end %>
+  </div>  
+  </div>
+</div>
+</div>
+</body>
+</html>
+
+<%- javascript_tag do -%> 
+  Function checkNumber(textBox)
+  {
+    while (textBox.value.lenght > 0 && isNaN(textBox.value)) {
+      textBox.value = textBox.value.substring(0, textBox.value.length - 1)
+    }
+    textBox.value = trim(textBox.value);
+  }
+<%- end -%>

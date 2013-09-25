@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title><%= h(yield(:title) || "fjb politeknik telkom") %></title>
+    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'coderay' %>
+    <%= yield(:head) %>
+  </head>  
+  <body>  
+    <div id="top">
+      <div class="logo"><a href="#"><img src="/images/railscasts_logo.png" alt="logo" />
+</a></div>
+      <ul class="subscribe horizontal">
+        <li>
+          <a 
+href="http://www.itunes.com/fjbpolitel"><img src="/images/itunes.png" alt="Itune" />
+          <span class="name">watch on iTunes</span>
+        </li>
+        <li>
+          <a href="http://www.twitters.com/fjbpolitel"><img src="/images/twitter.png" alt="Twitter" />
+</a>
+          <span class="name">follow on Twitter</span>
+        </li>
+        <li>
+          <a 
+href="http://www.facebook.com/fjbpolitel"><img src="/images/facebook.png" alt="Facebook" /></a>
+          <span class="name">follow on Facebook</span>
+        </li>
+        <li>
+          <a href="http://www.rsss.com/"><img src="/images/rss.png" alt="Rss" /></a>
+          <span class="name">subscribe to RSS feed</span>
+        </li>
+      </ul>  
+    </div>
+
+    <div id="nav_bar">
+      <ul class="nav horizontal">
+            <% if current_user.blank? %>     
+                <li><%= link_to "Home", :controller => "home" %></li>
+                <li><%= link_to "About FJB", :controller => 'home', :action => 'about' %></li>
+                <li><%= link_to "Feedback", :controller => 'feedbacks', :action => 'new' %></li>
+            <% end %>   
+            <% if current_user %>      
+              <% if current_user.role == "admin" %>
+                <li><%= link_to "Home", admin_path %></li>
+                <li><%= link_to "Post", admin_posts_path %></li>
+                <li><%= link_to "Category", admin_categories_url %></li>
+                <li><%= link_to "User", admin_users_url %></li>
+                <li><%= link_to "Feedback", admin_feedbacks_url %></li>
+              <% else %>
+                <li><%= link_to "Home", :controller => "home" %></li>
+                <li><%= link_to "About FJB", :controller => 'home', :action => 'about' %></li>
+                <li><%= link_to "Feedback", :controller => 'feedbacks', :action => 'new' %></li>
+                <li><%= link_to "My Post", posts_path %></li>
+                <li><%= link_to "My Account", edit_user_path(:user) %></li>
+              <% end %>
+            <% end %>
+        <% if current_user %>
+            <li><%= link_to "Log out", logout_path %></li>
+        <% else %>
+          <li><%= link_to "Signup", signup_path %></li>
+          <li><%= link_to "Login", login_path %></li>
+        <% end %>    
+      </ul>
+        <% form_for root_url, @search do |f| %>
+              <%= f.text_field :title_like, :size => '35' %>
+              <%= submit_tag "Search", :title => nil %>
+        <% end %>
+      </div>
+      
+      
+     <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <%- end -%>
+      
+      <%- if show_title? -%>
+        <h1><%=h yield(:title) %></h1>
+      <%- end -%>
+      
+      <%= yield %>
+      </div>
+      </div>
+      </div>
+    <div id="footer">
+      <div class="inner">
+        ©2011 fjbPolteknikTelkom- Hosted by <a 
+href="#">Muhamad Akbar Bin Widayat</a></div>
+    </div>
+  </body>
+</html>

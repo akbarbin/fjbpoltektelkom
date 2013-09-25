@@ -1,0 +1,21 @@
+authorization do
+  role :admin do
+    has_permission_on [:users, :posts, :comments, :categories, :offers ], :to => [:index, :show, :new, :create, :edit, :update, :destroy]
+  end
+  
+  role :guest do
+    has_permission_on :users, :to => [:show, :new, :create]
+    has_permission_on :posts, :to => [:index, :show]
+    has_permission_on :categories, :to => [:show]
+  end
+   
+  role :user do
+    has_permission_on :posts, :to => [:index, :show]
+    has_permission_on :users, :to => [:show, :edit, :update]
+    has_permission_on :categories, :to => [:show]
+    has_permission_on [:posts, :comments, :offers], :to => [:new, :create]
+    has_permission_on [:posts, :comments, :offers], :to => [:edit, :update, :destroy] do
+      if_attribute :user => is { user }
+    end
+  end
+end

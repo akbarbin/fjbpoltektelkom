@@ -1,0 +1,34 @@
+<html>
+<body>
+<div id="main">
+<div class="content">
+    <table class="list">
+          <tbody>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Action</th>
+          </tr>
+          <% for feedback in @feedbacks %>
+          <tr>
+            <td><%= h(feedback.id) %></td>
+            <td><%= h(feedback.name) %></td>
+            <td><%= h(feedback.content) %></td>
+            <td><%=h feedback.created_at.strftime('%b %d, %Y') %></td>
+            <td>
+            <div class="actions">
+              <%= link_to "Destroy", feedback, :method => :delete, :confirm => "Are you sure?" %>
+            </td>
+            </div>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+        
+          <%= link_to "Replay", new_feedback_path %> |
+  </div>
+</div>
+</body>
+</html>

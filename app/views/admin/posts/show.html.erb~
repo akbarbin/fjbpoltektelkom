@@ -1,0 +1,114 @@
+<html>
+<body>
+  <div id="main">
+    <div id="episode" class="">
+      <div class="info">
+        <div class="screenshot"><%= image_tag @post.photo.url(:small) %></div>
+          <h1>
+              <span class="position">#<%=h (@post.id) %></span>
+              <%=h (@post.title) %>
+          </h1>
+            <div class="details">
+              <%=h (@post.created_at.strftime('%b %d, %Y')) %> |
+              by <%= (@post.user.name if @post.user) %> </div>
+         	    <strong>Price: Rp. <%=h @post.price %></strong>
+                <div class="description"></div>
+                	<div class="watch">
+                    HP <%= (@post.user.handphone if @post.user) %> <br />
+                  </div>
+                  <br />
+              	<div class="watch">
+                  <%= link_to "Look Seller", admin_user_path(@post.user), :class=>"play_video watch_button" %>
+                </div>
+                <div class="clear"></div>
+             </div>
+             <ul class="nav horizontal">
+                <li class="selected"><a href="#" class="tab selected">Show Posts</a></li>
+                <li class="previous"><%= link_to "&lt; Back", :back %></li>
+            </ul>
+            <div class="nav_section">
+              <div class="show_notes">
+                <p><strong>
+                  <div class="code_block">
+                    <div class="code_header">
+                      <h4>Description</h4>
+                    </div>
+                  <div class="CodeRay">
+              <div class="code"><%= @post.content %>
+        </div>
+    </div>
+    <br />
+    <br />
+    <% unless @post.comments.empty? %>
+      <div class="code_header">
+        <%= pluralize(@post.comments.size, 'Comments') %></div>
+         <% for comment in @post.comments %>
+          <div class="comment" id="comment_153008">
+            <div class="avatar"><%= image_tag h(comment.user.photo.url), :height=>"50", :witdh=>"50" %></div>
+              <div class="actions user_actions">
+              </div>
+                <div class="main">
+                    <div class="headline">
+                      <span class="name">
+                         <%= link_to h(comment.user.name), user_path(comment.user) %>
+                      </span>
+                      <a href="#" class="created_at">
+                        <%=h (@post.created_at.strftime('%b %d, %Y')) %>
+                      </a>
+                    </div>
+                  		<div class="comment_content">
+                  		  <div class="actions">
+                           <p><%= comment.content %></p>
+                              <%= link_to "Edit", edit_admin_post_comment_path(comment) %>
+                              <%= link_to "Destroy", admin_post_path(comment), :method => :delete, :confirm => "Are you sure?" %>
+                        </div>        
+		                  </div>
+                  </div>
+        <% end %>
+      <% end %>
+      <br />
+      <% if current_user %>
+        <h3>Add your comment:</h3>
+          <%= render :partial => 'comments/form' %>
+       <% end %>   
+      </div>
+
+    <% unless @post.offers.empty? %>
+      <div class="code_header">
+        <%= pluralize(@post.offers.size, 'Offers') %></div>
+         <% for offer in @post.offers %>
+          <div class="comment" id="comment_153008">
+            <div class="avatar"><%= image_tag h(offer.user.photo.url), :height=>"50", :witdh=>"50" %></div>
+              <div class="actions user_actions">
+              </div>
+                <div class="main">
+                    <div class="headline">
+                      <span class="name">
+                         <%= link_to h(offer.user.name), user_path(offer.user) %>
+                      </span>
+                      <a href="#" class="created_at">
+                        <%=h (@post.created_at.strftime('%b %d, %Y')) %>
+                      </a>
+                    </div>
+                  		<div class="comment_content">
+                         <p>Rp. <%= offer.content %></p>
+                           <div class="actions">
+                            <%= link_to "Edit", edit_offer_path(offer) %>
+                            <%= link_to "Destroy", admin_post_path(offer), :method => :delete, :confirm => "Are you sure?" %>
+                           </div> 
+		                  </div>
+                  </div>
+        <% end %>
+      <% end %>
+      <% if current_user %>
+        <h3>Add your offer:</h3>
+          <%= render :partial => 'offers/form' %>
+      <% end %>    
+    </div>
+    <% unless current_user %>
+      First <%= link_to "Sign up", signup_path %> or <%= link_to "Login", login_path %> to post a comment and offer
+    <% end %>
+   </div>
+</div>
+</body>
+</html>  

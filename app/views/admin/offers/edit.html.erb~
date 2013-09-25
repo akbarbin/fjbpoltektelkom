@@ -1,0 +1,20 @@
+<% title 'New Offer' %>
+<html>
+<body>
+<div id="main">
+    <div class="content">
+      <% form_for @offer do |f| %>
+        <%= f.error_messages %>
+        <%= f.hidden_field :post_id %>
+        <p>
+          <%= f.text_field :content %>
+        </p>
+        <p>
+        <%= f.submit %>
+        or <%= link_to "Cancel", :cancel %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<html>
+<head>
+  <style type="text/css">
+    span.must{
+      font-size:12pt;
+      color:red;
+    }
+  </style>
+</head>
+<body>
+<div id="main">
+    <div class="content">
+  <% form_for @post, {:url => target, :html => { :multipart => true}}  do |f| %>
+       <%= f.error_messages %>
+      <%= f.hidden_field :user_id, :value => current_user.id -%>
+      <%= f.hidden_field :status, :value => "Pending" -%>
+      <p>
+        <%= f.label :category %><br />
+        <%= collection_select (:post, :category_id, Category.all, :id, :name, :prompt => true) %><span class="must"> * </span>
+      </p> 
+       <p>
+        <%= f.label :title %><br />
+        <%= f.text_field :title %><span class="must"> * </span>
+      </p>  
+      <p>
+        <%= f.label :price %><br />
+        <%= f.text_field :price %><span class="must"> * </span>
+      </p>
+      <p>
+        <%= f.label :content %><br />
+        <%= f.text_area :content%><span class="must"> * </span>
+      </p>
+      <p>
+        <%= f.label :photo %><br />
+        <%= f.file_field :photo %><span class="must"> * </span>
+      </p>
+      <p>
+        <%= f.submit 'Submit'%>
+        or <%= link_to "Cancel", admin_posts_path %>
+      </p>
+  <% end %>
+  </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<div class="episodes">
+    <% if @posts.empty? %>
+      Sorry no post here
+    <% end %>
+    <div class="full">
+      <div class="episode">
+        <div class="screenshot">
+          <%= image_tag post.photo.url, :width=>"200", :height=>"200" %>
+        </div>
+        <div class="main">
+            <div class="info">
+               <span class="number">Id Post #<%= post.id %></span>&ndash;
+               <span class="published_at"><%= post.created_at.strftime('%b %d, %Y') %></span>
+            </div>
+            <h2>
+              <a href="/posts/2"><%= link_to h(post.title), post %></a>
+            </h2>
+            <p>Category: <%= (post.category.name) %></p>
+            <h4>Rp. <%= (post.price) %></h4>
+            <div class="watch">
+              <%= link_to "Look Post", post_path(post), :class=>"play_video watch_button" %>
+                <span class="stats">
+                  (<%= pluralize(post.comments.size, 'comment') %>)
+                </span>
+            </div>
+       </div>
+       <div class="clear"></div>
+     </div>
+    </div>
+</div>
+<div class="pagination"><%= will_paginate @posts %></div>

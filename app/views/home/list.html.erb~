@@ -1,0 +1,52 @@
+<html>
+<body>
+<div id="main">
+<div class="content">
+<div class="side">
+    <div class="episode_views">
+      View:
+      <%= link_to image_tag("full.png", :border=>0), :controller => "home", :action => 'index' %>
+      <%= link_to image_tag("list.png", :border=>0), :controller => "home", :action => 'list' %>
+    </div>
+    <div class="categories">
+      <h2>Categories</h2>
+      <ul>
+        <% for category in @categories %>
+          <li><%= link_to h(category.name), category %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="banner">
+      <a 
+href="#"><img src="/images/linode.png" alt="lenode" /></a>
+    </div>
+    </div>
+    <table class="list">
+          <tbody>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Seller</th>
+            <th>Released</th>
+            <th>Comments</th>
+            <th>Action</th>
+          </tr>
+          <% for post in @posts %>
+          <tr>
+            <td><%= h(post.id) %></td>
+            <td><%= link_to h(post.title), post %></td>
+            <td><%= h(post.price) %></td>
+            <td><%= link_to h(post.user.name), post.user %></td> 
+            <td><%=h post.created_at.strftime('%b %d, %Y') %></td>
+            <td><%= pluralize(post.comments.size,'comment') %></td>
+            <td>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <div class="pagination"><%= will_paginate @posts %></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+class AddIsPendingToPost < ActiveRecord::Migration
+  def self.up
+    add_column :posts, :is_pending, :boolean, :default => false
+  end
+
+  def self.down
+    add_column :posts, :is_pending
+  end
+end

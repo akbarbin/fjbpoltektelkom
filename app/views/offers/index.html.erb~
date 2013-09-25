@@ -1,0 +1,2 @@
+
+<% link_to "Add Offer", new_offer_path %>

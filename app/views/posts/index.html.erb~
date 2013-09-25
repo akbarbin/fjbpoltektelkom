@@ -1,0 +1,73 @@
+<html>
+<body>
+<div id="main">
+<div class="content">
+  <% form_for @search do |f| %>
+    <p>
+      <%= f.label :title_like, "Name" %><br />
+      <%= f.text_field :title_like %>
+    </p>
+    <p>
+      <%= f.label :address_like, "Location" %><br />
+      <%= f.text_field :address_like %>
+    </p>
+    <p>
+      <%= f.label :category_id_equals, "Category" %><br />
+      <%= f.collection_select :category_id_equals, Category.all, :id, :name, :include_blank => true %>
+    </p>
+    <p>
+      <%= f.label :price_gte, "Price Range" %><br />
+      <%= f.text_field :price_gte, :size => 8 %> - <%= f.text_field :price_lte, :size => 8 %>
+    </p>
+    <p>
+      <%= f.submit "Submit" %>
+    </p>
+  <% end %>
+
+  <p>
+    Sort by:
+    <%= order @search, :by => :name %> |
+    <%= order @search, :by => :price %>
+  </p>
+
+  <%= render @posts %>
+    <table class="list">
+          <tbody>
+          <tr>
+            <th>#</th>
+            <th><%= link_to "Title", :sort => "title" %></th>
+            <th><%= link_to "Price", :sort => "price" %></th>
+            <th>Seller</th>
+            <th>Status</th>
+            <th>Comments</th>
+            <th>Action</th>
+          </tr>
+          <% for post in @posts %>
+          <tr>
+            <td><%= h(post.id) %></td>
+            <td><%= link_to h(post.title), post %></td>
+            <td><%= h(post.price) %></td>
+            <td><%= link_to h(post.user.username), post.user -%></td>
+            <td><%= h(post.status) %></td>
+            <td><%= pluralize(post.comments.size,'comment') %></td>
+            <td>
+            <div class="actions">
+              <%- if current_user -%>
+                <%- if current_user.id == post.user_id -%>
+                  <%= link_to "Edit", edit_post_path(post) %> |
+                  <%= link_to "Destroy", post, :method => :delete, :confirm => "Are you sure?" %>
+                <% end %>  
+             <% end %>   
+            </td>
+            </div>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <div class="actions">
+            <%= link_to "New Post", new_post_path if current_user %>
+        </div>
+  </div>
+</div>
+</body>
+</html>

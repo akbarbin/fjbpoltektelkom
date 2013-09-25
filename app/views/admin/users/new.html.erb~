@@ -1,0 +1,87 @@
+<% title 'New User' %>
+<html>
+<head>
+  <style type="text/css">
+    span.must{
+      font-size:12pt;
+      color:red;
+    }
+  </style>
+</head>
+<body>
+<div id="main">
+    <div class="content">
+    <% unless current_user %>
+      <p>Already have an account? <%= link_to "Log in", login_path %>.</p>
+    <% end %>
+    <div style="float: left" >
+    <% form_for @user, {:url => admin_users_url, :html => { :multipart => true }} do |f| %>
+      <%= f.error_messages %>
+        <fieldset>
+          <legend><strong>My Account</strong></legend>
+            <p>
+          <%= f.label :username %><br />
+          <%= f.text_field :username %><span class="must"> * </span>
+        </p>
+        <p>
+          <%= f.label :email %><br />
+          <%= f.text_field :email %><span class="must"> * </span>
+        </p>
+        <p>
+          <%= f.label :password %><br />
+          <%= f.password_field :password %><span class="must"> * </span>
+        </p>
+        <p>
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation %><span class="must"> * </span>
+        </p>    
+      </fieldset>
+      
+      <br />
+      <fieldset>
+
+    <legend><strong>Personal Identity</strong></legend>
+      <p>
+        <%= f.label :NIM %><br />
+        <%= f.text_field :nim %><span class="must"> * </span>
+      </p>
+      <p>
+        <%= f.label :name %><br />
+        <%= f.text_field :name %>
+      </p>
+      <p>
+        <%= f.label :handphone %><br />
+        <%= f.text_field :handphone %>
+      </p>
+      <p>
+        <%= f.label :prodi %><br />
+        <%= f.select :prodi, {"Manajemen Informatika" => "Manajemen Informatika", "Teknik Komputer" => "Teknik Komputer", "Komputerisasi Akuntansi" => "Komputerisasi Akuntansi"}, :prompt => true %>
+      </p>
+      <p>
+        <%= f.label :year %><br />
+        <%= f.select :year, {"2007" => "2007", "2008" => "2008", "2009" => "2009", "2010" => "2010", "2011" => "2011",}, :prompt => true  %>
+      </p>
+      <p>
+        <%= f.label :status %><br />
+        <%= f.radio_button :status, "Aktif" %> Aktif <%= f.radio_button :status, "Alumni" %> Alumni
+      </p>
+      <p>
+        <%= f.label :current_address %><br />
+        <%= f.text_field :current_address %>
+      </p>
+      <p>
+        <%= f.label :photo %><br />
+        <%= f.file_field :photo %><span class="must"> * </span>
+      </p>
+      <%= f.hidden_field :role, :value => "user" %>
+      <p>
+        <%= f.submit 'Submit' %>
+        or <%= link_to "Cancel", root_url %>
+      </p>
+    <% end %>
+    </div>
+    </div>
+</div>
+</body>
+</html>
+

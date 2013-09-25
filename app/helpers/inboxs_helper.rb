@@ -1,0 +1,2 @@
+module InboxsHelper
+end

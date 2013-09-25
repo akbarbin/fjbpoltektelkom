@@ -1,0 +1,5 @@
+<% title 'Edit Post' %>
+
+<%= render :partial => 'form', :locals => { :target => admin_post_path(@post) }%>
+
+

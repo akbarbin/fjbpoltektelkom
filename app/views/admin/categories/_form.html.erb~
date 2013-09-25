@@ -1,0 +1,14 @@
+<html>
+</body>
+<div id="main">
+   <div class="content">
+      <% form_for @category, { :url => target } do |f| %>
+        <%= f.error_messages %>
+        <%= f.label :name %> <br />
+        <%= f.text_field :name %>
+        <%= f.submit 'Update' %>
+      <% end %>
+   </div>
+</div>
+</body>
+</html>

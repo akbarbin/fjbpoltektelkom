@@ -1,0 +1,42 @@
+<html>
+<body>
+<div id="main">
+<div class="content">
+  <div class="episodes">
+  <% for user in @users %>
+        <div class="full">
+          <div class="episode">
+             <div class="screenshot">
+               <%= image_tag user.photo.url, :width=>"150", :height=>"150" %></div>
+                <div class="main">
+                  <div class="info">
+                    <span class="number">ID USER  #<%= user.id %></span> –
+                    <span class="published_at"><%= user.created_at.strftime('%b %d, %Y') %></span>    </div>
+                  <h2><%= link_to h(user.name), user %></h2>
+                  <p> <%=h (user.email) %></p>
+                  <%= simple_format(user.handphone) %>
+                  <div class="actions">
+                              <% if permitted_to? :edit, user %>
+                                <%= link_to "Edit", edit_user_path(user) %> |
+                              <% end %>
+                              <% if permitted_to? :destroy, user %>  
+                                <%= link_to "Destroy", user, :method => :delete, :confirm => "Are you sure?" %>
+                              <% end %>
+                          </td>
+                          </div>
+                </div>
+                <div class="clear"></div>
+                
+              </div>
+              <% end %>
+           </div>
+    </div>
+    <div class="actions">
+      <% if permitted_to? :create, User.new %>
+           <%= link_to "Add", new_user_path %> |
+      <% end %>
+    </div>
+  </div>
+</div>
+</body>
+</html>

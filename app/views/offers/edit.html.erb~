@@ -1,0 +1,3 @@
+<% title 'Update Offer' %>
+
+<%= render :partial => 'form' %>

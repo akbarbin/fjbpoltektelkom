@@ -1,0 +1,5 @@
+<% title 'Replay Feedback' %>
+
+<%= render :partial => 'form', :locals => { :target => admin_feedback_path(@feedback) }%>
+
+

@@ -1,0 +1,10 @@
+<html>
+<body>
+<div id="main">
+ <div class="content">
+  <h4>Welcome <%= current_user.name %> </h4>
+  you have 2 post new<br />
+  you have 3 user new
+</div>
+</body>
+</html>

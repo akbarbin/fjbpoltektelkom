@@ -1,0 +1,38 @@
+<html>
+</body>
+<div id="main">
+    <div class="content">
+        <table class="list">
+          <tbody >
+          <tr>
+            <th>#</th>
+            <th>Category</th>
+            <th>Posts</th>
+            <th>Created At</th>
+            <th>Actions</th>
+          </tr>
+          <% for category in @categories %>
+          <tr>
+            <td><%= h(category.id) %></td>
+            <td><%= h(category.name) %></td>
+            <td><%= pluralize(category.posts.size,'post') %></td>
+            <td><%=h category.created_at.strftime('%b %d, %Y') %></td>
+            <td>
+                <div class="actions">
+                    <%= link_to "Edit", edit_admin_category_path(category) %> |
+                    <%= link_to "Destroy", admin_category_path(category), :method => :delete, :confirm => "Are you sure?" %>
+                </div>  
+            </td>
+          </tr>
+          
+          </tbody>
+        <% end %>
+        </table>
+
+         <div class="actions">
+           <%= link_to "New Category", new_admin_category_path %>
+  </div>
+  </div>
+</div>
+</body>
+</html>

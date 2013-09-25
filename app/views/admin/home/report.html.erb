@@ -1,0 +1,66 @@
+<html>
+<body>
+    <div id="main">
+    <h1 class="content">Reporting</h1>      
+    <div class="content">
+        <div id="comments">
+            <div class="comment" id="comment_152678">
+            <div class="main">
+            <div class="headline">
+              <span class="name">Data User
+            </div>
+            <div class="comment_content">
+                 User: <%= pluralize(@users.size, 'users') %><br />
+            </div>
+        </div> 
+        <div id="comments">
+            <div class="comment" id="comment_152678">
+            <div class="main">
+            <div class="headline">
+              <span class="name">Data Category
+            </div>
+            <div class="comment_content">
+                 <table>
+                    <tr>
+                    </tr>
+                    <% for category in @categories %>
+                        <tr>
+                          <td><%= category.name %></td>
+                          <td><%= pluralize(category.posts.size,'posts') %></td>
+                        </tr>
+                     <% end %>
+                 </table>
+            </div>
+        </div>  
+
+        <div id="comments">
+            <div class="comment" id="comment_152678">
+            
+            <div class="main">
+            <div class="headline">
+              <span class="name">Data Post
+            </div>
+            <div class="comment_content">
+                 Post SoldOut: <%= pluralize(@posts_soldout.size, 'posts') %><br />
+                 Post Pending: <%= pluralize(@posts_pending.size, 'posts') %><br />
+            </div>
+        </div>  
+
+        <div id="comments">
+            <div class="comment" id="comment_152678">
+            
+            <div class="main">
+            <div class="headline">
+              <span class="name">Data Feedback
+            </div>
+            <div class="comment_content">
+                 Feedback: <%= pluralize(@feedbacks.size, 'feedbacks') %><br />
+            </div>
+        </div> 
+    <div class="clear"></div>
+    </div>
+  </div>
+  </div>
+  </div>
+</body>
+</html>    

@@ -1,0 +1,2 @@
+<% title 'New Offer' %>
+<%= render :partial => 'form' %>

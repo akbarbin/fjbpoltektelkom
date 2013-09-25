@@ -1,0 +1,51 @@
+<html>
+<body>
+ <div id="main">
+  <div class="content">
+      <div class="episodes">
+      <div class="side">
+        <div class="episode_views">
+          View:
+          <%= link_to image_tag("full.png", :border=>0), :controller => "home", :action => 'index' %>
+          <%= link_to image_tag("list.png", :border=>0), :controller => "home", :action => 'list' %>
+        </div>
+        <div class="categories">
+          <h2>Categories</h2>
+          <ul>
+            <% for category in @categories %>
+              <li><%= link_to h(category.name), category %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="banner">
+          <a 
+    href="#"><img src="/images/linode.png" alt="lenode" /></a>
+        </div>
+    </div>
+    <% if @category.posts.empty? %>
+      Sorry no post here
+    <% end %>
+      <% for post in @category.posts %>
+        <div class="full">
+          <div class="episode">
+            <div class="screenshot">
+               <%= image_tag post.photo.url, :width=>"200", :height=>"200" %>
+            </div>
+            <div class="main">
+              <div class="info">
+                <span class="number">Id Post  #<%= post.id %></span> –
+                <span class="published_at"><%= post.created_at.strftime('%b %d, %Y') %></span>    </div>
+                <h2><%= link_to h(post.title), post %></h2>
+                <p><%= simple_format(post.content) %></p>
+                  <div class="watch">
+                      <%= link_to "Look Post", post_path(post), :class=>"play_video watch_button" %>
+                      <span class="stats">(<a href="#"><%= pluralize(post.comments.size, 'comment') %></a>)</span>    
+                  </div>
+              </div>
+           <div class="clear"></div>
+        </div>
+      <% end %>
+      </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<% title "Login Admin" %>
+
+<html>
+</body>
+<div id="main">
+    <div class="content">
+    
+    <p>Don't have an account? <%= link_to "Sign up!", signup_path %></p>
+    <div style="float: left" >
+    
+    <% form_for @user_session, {:url => admin_user_sessions_url} do |f| %>
+      <%= f.error_messages %>
+      <p>
+        <%= f.label :username %><br />
+        <%= f.text_field :username %>
+      </p>
+      <p>
+        <%= f.label :password %><br />
+        <%= f.password_field :password %>
+      </p>
+      <p>
+        <%= f.submit 'Login' %> 
+        or <%= link_to "Cancel", root_path %>
+      </p>
+    <% end %>
+    </div>
+</div>
+</body>
+</html>

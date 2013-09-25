@@ -1,0 +1,28 @@
+<% title "New Search" %>
+
+<% form_for @search do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :keywords %><br />
+    <%= f.text_field :keywords %>
+  </p>
+  <p>
+    <%= f.label :category_id %><br />
+    <%= f.text_field :category_id %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :minimum_price %><br />
+    <%= f.text_field :minimum_price %>
+  </p>
+  <p>
+    <%= f.label :maximum_price %><br />
+    <%= f.text_field :maximum_price %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+

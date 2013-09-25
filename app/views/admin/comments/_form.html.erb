@@ -1,0 +1,18 @@
+<html>
+<body>
+<div id="main">
+    <div class="content">
+<% form_for @comment, {url => target} do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :post_id %>
+  <p>
+    <%= f.text_area :content, :rows => '3', :cols => '35' %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %> 
+
+    </div>
+    </div>
+</div>
+</body>
+</html>

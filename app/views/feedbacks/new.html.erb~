@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html><head>
+    <title>Feedback</title>
+   <style type="text/css">
+    span.must{
+      font-size:12pt;
+      color:red;
+    }
+  </style> 
+  </head><body>
+    <div id="main">
+<div class="content">
+  <div id="feedback">
+    <h2 class="bar">Feedback</h2>
+      <% form_for @feedback do |f| %>
+      <%= f.error_messages %>
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %><span class="must"> * </span>
+      </div>
+      <div class="field">
+        <%= f.label :email %> 
+        <%= f.text_field :email %><span class="must"> * </span>
+      </div>
+      <div class="field">
+        <%= f.label :content %>
+        <%= f.text_area :content %><span class="must"> * </span>
+      </div>
+      <div class="actions">
+        <%= f.submit "Submit" %>
+      </div>
+     <% end %> 
+ </div>
+  <div id="feedback_instructions">
+    <p><strong>Silahkan kirim feedback :</strong></p>
+    <ul>
+      <li>Jika ada masalah dengan iklan kami</li>
+      <li>Jika ada ide untuk aplikasi kedepannya</li>
+      <li>Apapun yang berhubungan dengan website</li>
+    </ul>
+    <p>Jika ingin bergambung dengan Forum Jual Beli Telkom Polytechnic</p>
+    <ul>
+      <li>Di facebook <a 
+href="http://www.facebook.com/fjbpolitel">FJB Telkom Polytechnic</a></li>
+      <li>Di twitter <a 
+href="http://www.twitter.com/fjbpolitel"> FJB Telkom Polytechnic</a></li>
+    </ul>
+  </div>
+</div>
+
+    </div>
+  </body></html>

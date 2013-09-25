@@ -1,0 +1,45 @@
+<html>
+<body>
+    <div id="main">
+    <h1 class="content"><%= h @user.name %>'s Profile</h1>      
+    <div class="content">
+  
+    <div id="comments">
+    <div class="comment" id="comment_152678">
+    
+    <div class="main">
+    <div class="actions", style="float right">
+      <%= link_to "back", :back %>    
+    </div>
+    <div class="headline">
+      <span class="name">Personal Identity
+    </div>
+    <div class="comment_content">
+      <p>Photo: <br /> <%= image_tag @user.photo.url(:small) %></p>
+         Email: <%= h(@user.email) %><br />
+         Handphone: <%= h(@user.handphone) %><br />
+         Status: <%= h(@user.status) %><br />
+         Year: <%= h(@user.year) %><br />
+         Current Address: <%= h(@user.current_address) %><br />
+    </div>
+    </div>
+      <div id="comments">
+    <div class="comment" id="comment_152678">
+    
+    <div class="main">
+    <div class="headline">
+      <span class="name">Data Record
+    </div>
+    <div class="comment_content">
+         Comment: <%= pluralize(@user.comments.size,'comment') %><br />
+         Post   : <%= pluralize(@user.posts.size,'post') %>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>    
